@@ -133,3 +133,20 @@ def main():
 
 print("Welcome to Love Sandwiches Data Automation")
 main()
+
+
+def get_stock_values(data):
+    """
+    Collect stock values to be prepared for the next day
+    """
+    headings = SHEET.worksheet("stock").row_values(1)
+    
+    planned_stock = {}
+    for heading, num in zip(headings,data):
+        planned_stock[heading] = num
+        
+    return planned_stock
+    
+stock_values = get_stock_values(stock_data)
+print("Make the following numbers of sandwiches for next market:\n")
+print(stock_values)
